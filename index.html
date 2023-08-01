@@ -14,22 +14,43 @@
         <h1>To-Notes</h1>
         <div class="user"></div>
     </nav>
-    <div class="app">
-        <div class="interface">
-            <div class="option">
-                <i class="fa-solid fa-note-sticky"></i>
-            </div>
-            <div class="option">
-                <i class="fa-solid fa-list-check"></i>
-            </div>
-            <div class="option">
-                <i class="fa-solid fa-book"></i>
-            </div>
-            <div class="option">
-                <i class="fa-solid fa-gear"></i>
-            </div>
+
+    <div class="interface">
+        <div class="option" id="notesOp">
+            <i class="fa-solid fa-note-sticky"></i>
         </div>
-    </div>
+        <div class="option">
+            <i class="fa-solid fa-list-check"></i>
+        </div>
+        <div class="option">
+            <i class="fa-solid fa-book"></i>
+        </div>
+        <div class="option">
+            <i class="fa-solid fa-gear"></i>
+        </div>
+    </div>    
+    <dialog class="noteScreen" id="noteScreen">
+        <button class="close">
+            <i class="fa-solid fa-xmark" style="font-size: 30px;"></i>
+        </button>
+        <div class="noteContainer">
+            <div class="num"></div>
+            <div class="note"></div>
+            <div class="num"></div>
+            <div class="note"></div>
+            <div class="num"></div>
+            <div class="note"></div>
+            <div class="num"></div>
+            <div class="note"></div>
+            <div class="num"></div>
+            <div class="note"></div>
+            <div class="num"></div>
+            <div class="note"></div>
+            <div class="num"></div>
+            <div class="note"></div>
+        </div>
+    </dialog>
+    
     <footer>
         <div class="links">
             <i class="fa fa-github" style="font-size:48px"></i>
