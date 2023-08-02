@@ -26,6 +26,12 @@ footer{
     align-items: center;
 }
 
+label{
+    font-size: 25px;
+    transition: color .3s ease;
+    font-weight: bold;
+}
+
 .app{
     width: 100%;
     height: 100%;
@@ -78,22 +84,42 @@ footer{
 }
 
 .noteScreen{
+    min-height: 80vh;
     max-height: 80vh;
     width: 90vw;
     background-color: white;
     border: 0;
+    padding: 0;
 }
 
-.noteContainer{
+.addNote{
+    width: 20%;
+    padding: 10px;
+    color: #222;
+    outline: none;
+    font-size: 25px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  
+}
+
+.addNote:hover{
+    cursor: pointer;
+    filter: brightness(.9);
+    transition: .3s ease;
+}
+
+.noteList{
     width: 100%;
     height: 100%;
     display: grid;
     grid-template-columns: 100px 80%;
     grid-template-rows: 100px;
-    border: 1px solid black;
     gap: 30px;
     padding-left: 30px;
     padding-top: 30px;
+    justify-content: center;
 }
 
 .note{
@@ -109,9 +135,13 @@ footer{
     border-radius: 2vmin;
 }
 
+.expanded{
+    height: 300px;
+}
+
 .close{
-    position: absolute;
-    right: 0;
+    position: sticky;
+    left: 100%;
     top: 0;
 }
 
@@ -120,4 +150,86 @@ footer{
     filter: brightness(.8);
     transition: .3s ease;
     
+}
+
+.goBack{
+    position: absolute;
+    left: 0;
+    display: none;
+}
+
+.goBack:hover{
+    cursor: pointer;
+    filter: brightness(.8);
+    transition: .3s ease;
+    
+}
+
+.noteForm{
+    padding: 30px;
+    display: none;
+}
+
+.noteForm input{
+    width: 50%;
+    display: block;
+    padding: 10px;
+    color: #222;
+    outline: none;
+    margin: 1em 0;
+    font-size: 25px;
+}
+
+.noteForm select{
+    width: 25%;
+    display: block;
+    padding: 10px;
+    color: #222;
+    outline: none;
+    margin: 1em 0;
+    font-size: 25px;
+}
+
+.noteForm textarea{
+    width: 100%;
+    display: block;
+    padding: 10px;
+    color: #222;
+    outline: none;
+    margin: 1em 0;
+    font-size: 25px;
+    resize: none;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.noteForm button{
+    width: 30%;
+    padding: 10px;
+    color: #222;
+    outline: none;
+    margin: 1em 0;
+    font-size: 25px;
+  
+}
+
+.noteForm button:hover{
+   filter: brightness(.9);
+   cursor: pointer;
+   transition: .3s ease;
+}
+
+::-webkit-scrollbar{
+    width: 1em;
+}
+
+::-webkit-scrollbar-track{
+    background: gray;
+    border-radius: 100vw;
+    margin-block: 1em;
+}
+
+::-webkit-scrollbar-thumb{
+    background: darkgrey;
+    border-radius: 100vw;
+    border: .25em solid gray;
 }
