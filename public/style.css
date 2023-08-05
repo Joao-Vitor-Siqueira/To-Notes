@@ -32,6 +32,46 @@ label{
     font-weight: bold;
 }
 
+.noteTable{
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 1.2em;
+    width: 900px;
+}
+
+.noteTable thead tr{
+    background-color: gray;
+    color: white;
+    text-align: left;
+    font-weight: bold;
+}
+
+.noteTable td button{
+    font-size: 1.2em;
+}
+
+.noteTable td button:hover{
+    cursor: pointer;
+    filter: brightness(.8);
+}
+
+.noteTable td button i{
+    color: white;
+}
+
+.noteTable th,
+.noteTable td{
+    padding: 12px 15px;
+}
+
+.noteTable tbody tr{
+    border-bottom: 1px solid black;
+}
+
+.noteTable tbody tr:nth-of-type(even){
+    background-color: lightgray;
+}
+
 .app{
     width: 100%;
     height: 100%;
@@ -90,6 +130,7 @@ label{
     background-color: white;
     border: 0;
     padding: 0;
+    overflow: hidden;
 }
 
 .addNote{
@@ -112,7 +153,7 @@ label{
 
 .noteList{
     width: 100%;
-    height: 100%;
+    height:800px;
     display: grid;
     grid-template-columns: 100px 80%;
     grid-template-rows: 100px;
@@ -120,6 +161,7 @@ label{
     padding-left: 30px;
     padding-top: 30px;
     justify-content: center;
+    overflow-y: scroll;
 }
 
 .noteList div {

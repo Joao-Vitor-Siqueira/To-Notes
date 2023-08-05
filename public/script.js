@@ -2,9 +2,11 @@ const notesOp = document.getElementById("notesOp")
 const noteScreen = document.getElementById("noteScreen")
 const close = document.querySelectorAll(".close")
 const noteList = document.getElementById("noteList")
+const noteRows = document.getElementById("noteRows")
 const dialogs = document.querySelectorAll("dialog")
 const noteFormScreen = document.getElementById("noteFormScreen")
 const goBack = document.getElementById("goBack")
+const addNoteBtn = document.getElementById("addNoteBtn")
 
 
 
@@ -22,35 +24,37 @@ close.forEach(btn => {
     })
 });
 
-function showNoteForm(e){
+function showNoteForm(){
     noteList.style.display = "none";
-    e.style.display = "none";
+    addNoteBtn.style.display = "none";
     noteFormScreen.style.display = "block"
     goBack.style.display = "inline"
-    
-    goBack.addEventListener("click",() => {
-        noteList.style.display = "grid";
-        e.style.display = "inline";
-        noteFormScreen.style.display = "none"
-        goBack.style.display = "none"
-    })
 
+    goBack.addEventListener("click",() => {
+      fetchNotes();
+      noteList.style.display = "grid";
+      addNoteBtn.style.display = "inline";
+      noteFormScreen.style.display = "none"
+      goBack.style.display = "none"
+    })
 }
 
+
+
 const noteForm = document.getElementById("noteForm")
+const noteTitle = document.getElementById("noteTitle")
+const noteContent = document.getElementById("noteContent")
+const noteCategory = document.getElementById("noteCategory")
 //saving the notes
 noteForm.addEventListener('submit',(e) => {
     e.preventDefault();
-
-    const noteTitle = document.getElementById("noteTitle")
-    const noteContent = document.getElementById("noteContent")
 
     fetch('/saveNote', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({title: noteTitle.value, content: noteContent.value}),
+        body: JSON.stringify({title: noteTitle.value,category: noteCategory.value, content: noteContent.value}),
       })
       .then(response => {
         if (response.ok) {
@@ -75,10 +79,45 @@ function fetchNotes() {
       }
     })
     .then(notes => {
+        noteRows.innerHTML = '';
         notes.forEach((note,index) => {
-          noteList.innerHTML = '';
-          noteList.innerHTML += `<div class="num">${index}</div> <div class="note">${note.title}</div> `;
+          noteRows.innerHTML += `
+          <tr>
+            <td>${index}</td>
+            <td>${note.title}</td>
+            <td>${note.category}</td>
+            <td>
+                <button onclick="editNotes(${index})" style="background-color: #0298cf;">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </button>
+                <button style="background-color: #f80000;">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+            </td>
+          </tr>
+          `;
         })
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}
+
+
+function editNotes(index){
+  showNoteForm();
+  fetch('/getNotes')
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        console.error('Failed to fetch data.');
+      }
+    })
+    .then(notes => {
+        noteTitle.value = notes[index].title;
+        noteCategory.value = notes[index].category;
+        noteContent.value = notes[index].content;
     })
     .catch(error => {
       console.error('Error:', error);
